@@ -1,4 +1,4 @@
-name: "Docker Update the README Workflow status"
+name: "Update the README Workflow status"
 author: "Girish V"
 description: "Updates the Readme with the latest workflow status using docker"
 runs:
