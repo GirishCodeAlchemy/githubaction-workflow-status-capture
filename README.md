@@ -21,6 +21,9 @@ jobs:
         uses: GirishCodeAlchemy/githubaction-workflow-status-capture@v2
 ```
 
+> [!IMPORTANT]
+> Enable the `Read and write` permission option in the repository settings under `Settings` -> `Actions` -> `General` so that it can update README.md.
+
 # output
 
 <!-- START_ACTIONS_TABLE -->
