@@ -14,8 +14,7 @@ def get_workflow_names():
     if response.status_code == 200:
         # Parse the JSON response
         workflows = response.json()['workflows']
-        # print(workflows)
-        # return [workflow['name'] for workflow in workflows]
+        print(f"List of workflows: {[workflow['name'] for workflow in workflows]}")
         return workflows
     else:
         print(f"Failed to fetch workflows. Status code: {response.status_code}")
@@ -42,6 +41,7 @@ def generate_table_content(workflows):
 
     for workflow in workflows:
         workflow_name = workflow['name']
+        print(f"Updating the workflow: {workflow_name}")
         workflow_file = workflow['path'].split('/')[-1]
         if workflow_file not in added_workflows:
             action_url = f'https://github.com/{os.environ["GITHUB_REPOSITORY"]}/actions/workflows/{workflow_file}'
@@ -65,6 +65,7 @@ def update_readme(readme_path, table_content):
     end_identifier = "<!-- END_ACTIONS_TABLE -->"
     start_pos = existing_content.find(start_identifier)
     end_pos = existing_content.find(end_identifier, start_pos + 1)
+    print(f"Readme workflow start_pos: {start_pos}, end_pos {end_pos}")
 
     if start_pos != -1 and end_pos != -1:
         # If the identifiers are found, replace the content between them with the new table
