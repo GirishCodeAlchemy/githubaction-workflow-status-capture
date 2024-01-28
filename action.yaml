@@ -5,8 +5,8 @@ runs:
   using: "docker"
   image: "Dockerfile"
 branding:
-  icon: "https://github.com/GirishCodeAlchemy/GirishCodeAlchemy/blob/48e9c133950e09d23ae5b11b0ee40d41add0a507/logo.jpg"
-  color: "red"
+  icon: 'git-branch'
+  color: 'gray-dark'
 inputs:
   email:
     description: The Commiter's email address
