@@ -11,8 +11,8 @@ inputs:
   email:
     description: The Commiter's email address
     required: true
-    default: ${{ github.actor }}@localhost
+    default: github-action-bot@localhost
   name:
     description: The Commiter's Name
     required: true
-    default: ${{ github.actor }}
+    default: github-action-bot
