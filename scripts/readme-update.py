@@ -1,11 +1,12 @@
+import os
 from pathlib import Path
 
 import requests
 
 
-def get_workflow_names(username, repository):
+def get_workflow_names():
     # GitHub Actions API endpoint for workflow list
-    api_url = f'https://api.github.com/repos/{username}/{repository}/actions/workflows'
+    api_url = f'https://api.github.com/repos/{os.environ["GITHUB_REPOSITORY"]}/actions/workflows'
 
     # Make a request to the GitHub API
     response = requests.get(api_url)
@@ -35,7 +36,7 @@ def get_latest_build_status(workflow):
         return None
 
 
-def generate_table_content(username, repository, workflows):
+def generate_table_content(workflows):
     table_content = "\n| Workflow | Build Status |\n|----------|--------------|\n"
     added_workflows = set()
 
@@ -43,7 +44,7 @@ def generate_table_content(username, repository, workflows):
         workflow_name = workflow['name']
         workflow_file = workflow['path'].split('/')[-1]
         if workflow_file not in added_workflows:
-            action_url = f'https://github.com/{username}/{repository}/actions/workflows/{workflow_file}'
+            action_url = f'https://github.com/{os.environ["GITHUB_REPOSITORY"]}/actions/workflows/{workflow_file}'
             # build_status = get_latest_build_status(workflow)
 
             # if build_status:
@@ -84,19 +85,16 @@ def update_readme(readme_path, table_content):
     print("README.md updated with the latest build statuses.")
 
 if __name__ == "__main__":
-    # GitHub username and repository name
-    username = "girish-devops-project"
-    repository = "github-action"
 
     # Path to the README.md file
     readme_path = Path("README.md")
 
     # Get all workflow names
-    workflows = get_workflow_names(username, repository)
+    workflows = get_workflow_names()
 
     if workflows:
         # Generate README content
-        readme_content = generate_table_content(username, repository, workflows)
+        readme_content = generate_table_content(workflows)
 
         # Update the README.md file with the generated content
         update_readme(readme_path, readme_content)
