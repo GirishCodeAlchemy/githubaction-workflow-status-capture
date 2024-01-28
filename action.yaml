@@ -1,6 +1,6 @@
-name: "Update the README Workflow status"
+name: "Capture GithubAction Workflow status to Readme"
 author: "Girish V"
-description: "Updates the Readme with the latest workflow status using docker"
+description: "Updates the Readme with the latest workflow status"
 runs:
   using: "docker"
   image: "Dockerfile"
