@@ -2,12 +2,15 @@
 
 echo "==================="
 
-git config --global user.name "${GITHUB_ACTOR}"
+git config --global user.name "${INPUT_NAME}"
 git config --global user.email "${INPUT_EMAIL}"
 git config --global pull.ff only
 git config --global --add safe.directory /github/workspace
 
 python3 /app/readme-update.py
+
+echo "Committer's Email: ${INPUT_EMAIL}"
+echo "Committer's Name: ${INPUT_NAME}"
 
 git add -A && git commit -m "update the Readme"
 
