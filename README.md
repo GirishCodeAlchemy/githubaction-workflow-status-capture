@@ -18,7 +18,7 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v3
       - name: Run Githubaction Generator
-        uses: GirishCodeAlchemy/githubaction-workflow-status-capture@v2
+        uses: GirishCodeAlchemy/githubaction-workflow-status-capture@v2.0
 ```
 
 > [!IMPORTANT]
